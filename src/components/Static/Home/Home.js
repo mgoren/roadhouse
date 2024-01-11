@@ -11,7 +11,7 @@ export default function Home() {
       </PageTitle>
 
       <Box mb={2}>
-        <img src={process.env.PUBLIC_URL + '/roadhouse/roadhouse-logo.png'} alt='' />
+        <img src={process.env.PUBLIC_URL + '/roadhouse/roadhouse-logo.png'} alt='' style={{ maxWidth: "100%", height: "auto" }} />
       </Box>
 
       <Typography variant="h6" sx={{ mb: 2 }}>
