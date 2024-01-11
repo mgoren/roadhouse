@@ -1,8 +1,5 @@
 import { Typography, Box, } from '@mui/material';
-import { StyledLink, StyledPaper, PageTitle, SectionDivider, Paragraph } from 'components/Layout/SharedStyles';
-import { mailtoLink} from 'utils';
-import config from 'config';
-const { EMAIL_CONTACT } = config;
+import { StyledLink, StyledPaper, PageTitle, Paragraph } from 'components/Layout/SharedStyles';
 
 export default function Home() {
 

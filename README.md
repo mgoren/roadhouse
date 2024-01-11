@@ -139,9 +139,9 @@ cd functions && npm install && cd ..
 **Database Update Firebase function:**
 
 ```sh
-gcloud iam service-accounts create firebase --project [PROJECT_ID]
-gcloud iam service-accounts keys create tmp.json --iam-account firebase@[PROJECT_ID].iam.gserviceaccount.com
-firebase functions:config:set firebase.service_account="$(cat tmp.json)"
+gcloud iam service-accounts create firebase --project portland-roadhouse
+gcloud iam service-accounts keys create tmp.json --iam-account firebase@portland-roadhouse.iam.gserviceaccount.com
+firebase functions:config:set database.service_account="$(cat tmp.json)"
 rm tmp.json
 firebase functions:config:get > functions/.runtimeconfig.json // for testing
 ```
@@ -153,7 +153,7 @@ _Note: Comment out the lines pertaining to Stripe in `functions/index.js` if not
 
 ```sh
 firebase functions:config:set stripe.secret_key="YOUR_STRIPE_SECRET_KEY"
-firebase functions:config:set stripe.site_url="https://[PROJECT_ID].web.app" // replace with actual front-end site URL
+firebase functions:config:set stripe.site_url="https://portland-roadhouse.web.app" // replace with actual front-end site URL
 firebase functions:config:get > functions/.runtimeconfig.json // for testing
 firebase emulators:start --only functions // for testing
 firebase deploy --only functions // to deploy
@@ -164,8 +164,8 @@ firebase deploy --only functions // to deploy
 Create Google Cloud service account on project, save keys to firebase function config:
 
 ```sh
-gcloud iam service-accounts create sheets --project [PROJECT_ID]
-gcloud iam service-accounts keys create tmp.json --iam-account sheets@[PROJECT_ID].iam.gserviceaccount.com
+gcloud iam service-accounts create sheets --project portland-roadhouse
+gcloud iam service-accounts keys create tmp.json --iam-account sheets@portland-roadhouse.iam.gserviceaccount.com
 firebase functions:config:set googleapi.service_account="$(cat tmp.json)"
 rm tmp.json
 ```
@@ -175,7 +175,7 @@ Setup spreadsheet for recording orders:
 _Note: Update fields/columns as needed in `functions/fields.js` and in spreadsheet._
 
 - Make a copy of the [template spreadsheet](https://docs.google.com/spreadsheets/d/1gQ9l8wBTgNmiI0KmpECsDzCqePSPMnZFaecuj0VO_cU/edit?usp=sharing).
-- Give spreadsheet edit permissions to the service account email: `sheets@[PROJECT_ID].iam.gserviceaccount.com`
+- Give spreadsheet edit permissions to the service account email: `sheets@portland-roadhouse.iam.gserviceaccount.com`
 - Determine your spreadsheet ID - the long string of characters (likely between `/d/` and `/edit`)
 
 ```sh
@@ -207,6 +207,7 @@ _ADD MORE INFO TO THIS README SECTION._
 Set environment variables in `.env`
 
 ```sh
+npm install
 npm start
 ```
 
