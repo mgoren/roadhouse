@@ -240,16 +240,16 @@ const config = {
     {key: 'checkout', label: 'Checkout'}
   ],
   PAYMENT_METHODS: ['paypal', 'check'], // options are 'stripe', 'paypal', and/or 'check' (first is default)
-  TITLE: 'Example Contra Weekend 2024 Registation',
-  CONFIRMATION_PAYPAL_TITLE: 'Example Dance Weekend Confirmation',
-  CONFIRMATION_CHECK_TITLE: 'Example Dance Weekend Registration',
-  EMAIL_CONTACT: 'contact@example.com',
-  COVID_POLICY_URL: 'example.com/covid',
+  TITLE: 'Portland Roadhouse 2024',
+  // CONFIRMATION_PAYPAL_TITLE: 'Example Dance Weekend Confirmation',
+  // CONFIRMATION_CHECK_TITLE: 'Example Dance Weekend Registration',
+  // EMAIL_CONTACT: 'contact@example.com',
+  // COVID_POLICY_URL: 'example.com/covid',
   // DETAILS_URL: 'example.com',
   // WAIVER_URL: 'example.com/waiver',
   // PAYPAL_ME_URL: 'paypal.me/example',
-  CHECK_TO: 'Check To Example',
-  CHECK_ADDRESS: "Address line 1<br />Address line 2<br />Address line 3<br />Address line 4",
+  // CHECK_TO: 'Check To Example',
+  // CHECK_ADDRESS: "Address line 1<br />Address line 2<br />Address line 3<br />Address line 4",
   ADMISSION_COST_RANGE,
   ADMISSION_COST_DEFAULT,
   ADMISSION_QUANTITY_RANGE,
@@ -265,7 +265,7 @@ const config = {
   SHARE_OPTIONS,
   YES_NO_OPTIONS,
   DANCES,
-  CAPTCHA_KEY: process.env.REACT_APP_RECAPTCHA_SITE_KEY,
+  // CAPTCHA_KEY: process.env.REACT_APP_RECAPTCHA_SITE_KEY,
   FIREBASE_PROJECT_ID: process.env.REACT_APP_FIREBASE_PROJECT_ID
 }
 

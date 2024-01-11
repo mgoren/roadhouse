@@ -39,50 +39,53 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
     setCurrentPage(NUM_PAGES);
   }
 
-	const saveOrderToFirebase = (electronicOrder) => {
-    // console.log(`paid via ${paymentMethod}`);
+	const saveOrderToFirebase = async () => {
+    try {
+      setError(null);
+      setProcessingMessage('Saving registration...');
+      setProcessing(true);
 
-    setProcessingMessage('Processing payment...');
+      const initialOrder = {
+        ...order,
+        people: order.people.slice(0, order.admissionQuantity).map(updateApartment),
+        total,
+        deposit: paymentMethod === 'check' ? 0 : total,
+        timestamp: serverTimestamp()
+      };
+      const receipt = renderToStaticMarkup(<Receipt order={initialOrder} currentPage='confirmation' />);
+      const additionalPersonReceipt = renderToStaticMarkup(<AdditionalPersonReceipt order={initialOrder} />);
+      const initialOrderWithReceipt = { ...initialOrder, receipt, additionalPersonReceipt };
+      setOrder(initialOrderWithReceipt);
 
-    let electronicPaymentId = '';
-    if (paymentMethod === 'check') {
-      electronicPaymentId = 'check';
-    } else if (paymentMethod === 'paypal') {
-      electronicPaymentId = electronicOrder.payer.email_address;
-    } else if (paymentMethod === 'stripe') {
-      electronicPaymentId = electronicOrder.paymentIntent.id;
-    }
-
-    const updatedOrder = {
-      ...order,
-      people: order.people.slice(0, order.admissionQuantity).map(updateApartment),
-      total,
-      deposit: paymentMethod === 'check' ? 0 : total,
-      electronicPaymentId,
-      timestamp: serverTimestamp()
-    };
-    const receipt = renderToStaticMarkup(<Receipt order={updatedOrder} currentPage='confirmation' />);
-    const additionalPersonReceipt = renderToStaticMarkup(<AdditionalPersonReceipt order={updatedOrder} />);
-    const updatedOrderWithReceipt = { ...updatedOrder, receipt, additionalPersonReceipt };
-    // console.log('setting order', updatedOrderWithReceipt);
-    setOrder(updatedOrderWithReceipt);
-		push(ref(db, 'orders/'), updatedOrderWithReceipt).then(() => {
-			// console.log('order saved to firebase');
-      // clearCache('order');
-      // cache('lastCompletedOrder', updatedOrderWithReceipt);
+      await push(ref(db, 'orders/'), initialOrderWithReceipt);
+      console.log('initial order saved to firebase');
+      setProcessingMessage('Processing payment...');
+      return true;
+    } catch (err) {
+      console.err(`error saving order to firebase`, err);
+      setError(`We encountered an error saving your information, so your payment was not processed. Please try again or contact ${EMAIL_CONTACT}.`);
       setPaying(false);
       setProcessing(false);
-      // reset client secret for stripe payment if using stripe
-      setCurrentPage('confirmation');
-		})
-		.catch((err) => {
-      console.err('error saving order to firebase');
-			setError(paymentMethod === 'check' ? 
-        `We encountered an issue recording your information: ${err}. Please contact ${EMAIL_CONTACT}.` 
-        : `Your payment was processed successfully but we encountered an issue recording your information: ${err}. Please contact ${EMAIL_CONTACT}.`
-      );
-		});
-	}
+      return false;
+    }
+	};
+
+  const updateOrderInFirebase = async ({ electronicPaymentId }) => {
+    setProcessingMessage(electronicPaymentId === 'check' ? 'Updating registration...' : 'Payment successful. Updating registration...');
+    setProcessing(true);
+
+    // add electronicPaymentId to the right record in Firebase
+
+
+    //   setError(paymentMethod === 'check' ?
+    //   `We encountered an issue recording your information: ${err}. Please contact ${EMAIL_CONTACT}.` 
+    //   : `Your payment was processed successfully but we encountered an issue recording your information: ${err}. Please contact ${EMAIL_CONTACT}.`
+    // );
+
+    setPaying(false);
+    setProcessing(false);
+    setCurrentPage('confirmation');
+  }
 
   return (
     <section>
@@ -101,7 +104,7 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
             email={order.people[0].email}
             setError={setError}
             processing={processing} setProcessing={setProcessing}
-            saveOrderToFirebase={saveOrderToFirebase}
+            saveOrderToFirebase={saveOrderToFirebase} updateOrderInFirebase={updateOrderInFirebase}
           />
         }
 
@@ -111,16 +114,16 @@ export default function Checkout({ order, setOrder, setError, setCurrentPage }) 
             total={total} 
             setError={setError} 
             setPaying={setPaying} 
-            processing={processing} setProcessing={setProcessing} 
-            saveOrderToFirebase={saveOrderToFirebase}
+            processing={processing}
+            saveOrderToFirebase={saveOrderToFirebase} updateOrderInFirebase={updateOrderInFirebase}
           />
         }
 
         {paymentMethod === 'check' && 
           <>
             <Check 
-              processing={processing} setProcessing={setProcessing}
-              saveOrderToFirebase={saveOrderToFirebase}
+              processing={processing}
+              saveOrderToFirebase={saveOrderToFirebase} updateOrderInFirebase={updateOrderInFirebase}
             />
           </>
         }
