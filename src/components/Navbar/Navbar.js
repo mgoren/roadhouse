@@ -6,13 +6,6 @@ import ColorModeToggle from 'components/ColorModeToggle';
 
 const pages = [
   { title: 'Home', path: '/' },
-  { title: 'About', path: '/about' },
-  { title: 'Bands & Callers', path: '/staff' },
-  { title: 'Itinerary', path: '/schedule' },
-  { title: 'Seattle', path: '/seattle' },
-  { title: 'Contact', path: '/contact' },
-  { title: 'Payment info', path: '/paymentinfo' },
-  { title: 'Registration', path: '/registration' }
 ];
 
 const row1 = pages.slice(0, 5);
@@ -68,13 +61,13 @@ export default function Navbar({ toggleColorMode }) {
       {/* brand icon */}
       <Box sx={{ display: { xs: 'none', md: 'inline' } }}>
         <Link component={RouterLink} to='/'>
-          <img src={process.env.PUBLIC_URL + '/supersonic/sslogo-sidetext240x82.png'} alt="Supersonic logo" style={{ margin: '10px 10px 10px 0px' }}/>
+          <img src={process.env.PUBLIC_URL + '/roadhouse/roadhouse-logo-small.png'} alt="Supersonic logo" style={{ margin: '10px 10px 10px 0px' }}/>
         </Link>
       </Box>
 
       <Box sx={{ display: { xs: 'inline', sm: 'inline', md: 'none' } }}>
         <Link component={RouterLink} to='/'>
-          <img src={process.env.PUBLIC_URL + '/supersonic/sslogo-bitmap150x137.png'} alt="Supersonic logo" style={{ margin: '10px 10px 10px 0px', height: '80px' }}/>
+          <img src={process.env.PUBLIC_URL + '/roadhouse/roadhouse-logo-small.png'} alt="Supersonic logo" style={{ margin: '10px 10px 10px 0px', height: '80px' }}/>
         </Link>
       </Box>
 
