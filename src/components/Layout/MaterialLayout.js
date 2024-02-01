@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { CssBaseline, useMediaQuery, Box } from '@mui/material';
+import { CssBaseline, useMediaQuery } from '@mui/material';
 import { ThemeProvider } from '@mui/system';
-import Navbar from '../Navbar';
+import ColorModeToggle from 'components/ColorModeToggle';
 import { lightTheme, darkTheme, rootStyle } from './LayoutStyles';
+import { StyledPaper } from 'components/Layout/SharedStyles';
 
 export default function MaterialLayout({ children }) {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -20,11 +21,12 @@ export default function MaterialLayout({ children }) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div sx={rootStyle(theme)}>
-        <Navbar toggleColorMode={toggleColorMode} />
-        {/* <Paper sx={paperStyle(theme)}>{children}</Paper> */}
-        <Box sx={{ my: { xs: 0, sm: 2 } }}>
-          {children}
-        </Box>
+        <StyledPaper extraStyles={{ maxWidth: 1000 }} align="center">
+          <ColorModeToggle toggleColorMode={toggleColorMode} />
+          {/* <Box sx={{ my: { xs: -6, sm: -12 } }}> */}
+            {children}
+          {/* </Box> */}
+        </StyledPaper>
       </div>
     </ThemeProvider>
   );

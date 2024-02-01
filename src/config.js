@@ -226,6 +226,44 @@ const DANCES = [
   "Young Widow"
 ];
 
+const EVENTS = [
+  {
+    start: '12:00',
+    end: '1:05',
+    description: 'Eric Curl with Riffraff'
+  },
+  {
+    start: '1:20',
+    end: '2:25',
+    description: 'Koren Wake with Coriolis'
+  },
+  {
+    start: '2:40',
+    end: '3:45',
+    description: 'Lindsey Dono with Blue Star'
+  },
+  {
+    start: '3:45',
+    end: '4:00',
+    description: 'Recognize Iron and Titanium Dancers; Door Prizes'
+  },
+  {
+    start: '4:00',
+    end: '5:05',
+    description: "Jesse Partridge with Hummingbird"
+  },
+  {
+    start: '5:05',
+    end: '5:20',
+    description: 'Iron and Titanium Dancer group photos'
+  },
+  {
+    start: '5:20',
+    end: '6:25',
+    description: 'Kelly Tabor with The Euphemists'
+  }
+];
+
 // *********************************************************************************************
 // ***                           Export fields here if added fields above!                   ***
 // *********************************************************************************************
@@ -265,6 +303,7 @@ const config = {
   SHARE_OPTIONS,
   YES_NO_OPTIONS,
   DANCES,
+  EVENTS,
   // CAPTCHA_KEY: process.env.REACT_APP_RECAPTCHA_SITE_KEY,
   FIREBASE_PROJECT_ID: process.env.REACT_APP_FIREBASE_PROJECT_ID
 }
