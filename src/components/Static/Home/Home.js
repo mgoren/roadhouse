@@ -48,6 +48,7 @@ export default function Home() {
 
         <Paragraph>
           The Portland Roadhouse will follow PCDC's <StyledLink to='https://portlandcountrydance.org/covid19'>Covid Policy</StyledLink>.<br />
+          As of February 1, 2024, this means that vaccinations and masking are encouraged but not required.
         </Paragraph>
 
         <SectionDivider />
