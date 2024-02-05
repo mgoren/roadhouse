@@ -39,7 +39,9 @@ export default function Home() {
         </Paragraph>
 
         <Paragraph>
-          Noon to 6:25pm
+          Noon to 6:25pm<br />
+          Doors open at 11:00 AM<br />
+          <em>Please remember to spring forward on Saturday night!</em>
         </Paragraph>
 
         <Paragraph>
@@ -47,8 +49,14 @@ export default function Home() {
         </Paragraph>
 
         <Paragraph>
+          Milwaukie Community Club<br />
+          10666 SE 42nd Ave<br />
+          Milwaukie, OR 97222
+        </Paragraph>
+
+        <Paragraph>
           The Portland Roadhouse will follow PCDC's <StyledLink to='https://portlandcountrydance.org/covid19'>Covid Policy</StyledLink>.<br />
-          As of February 1, 2024, this means that vaccinations and masking are encouraged but not required.
+          As of February 1, this means that vaccinations and masking are encouraged but not required.
         </Paragraph>
 
         <SectionDivider />
