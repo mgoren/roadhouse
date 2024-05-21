@@ -61,13 +61,13 @@ export default function Navbar({ toggleColorMode }) {
       {/* brand icon */}
       <Box sx={{ display: { xs: 'none', md: 'inline' } }}>
         <Link component={RouterLink} to='/'>
-          <img src={process.env.PUBLIC_URL + '/roadhouse/roadhouse-logo-small.png'} alt="Supersonic logo" style={{ margin: '10px 10px 10px 0px' }}/>
+          <img src={process.env.PUBLIC_URL + '/roadhouse/roadhouse-logo-small.png'} alt="Roadhouse logo" style={{ margin: '10px 10px 10px 0px' }}/>
         </Link>
       </Box>
 
       <Box sx={{ display: { xs: 'inline', sm: 'inline', md: 'none' } }}>
         <Link component={RouterLink} to='/'>
-          <img src={process.env.PUBLIC_URL + '/roadhouse/roadhouse-logo-small.png'} alt="Supersonic logo" style={{ margin: '10px 10px 10px 0px', height: '80px' }}/>
+          <img src={process.env.PUBLIC_URL + '/roadhouse/roadhouse-logo-small.png'} alt="Roadhouse logo" style={{ margin: '10px 10px 10px 0px', height: '80px' }}/>
         </Link>
       </Box>
 
